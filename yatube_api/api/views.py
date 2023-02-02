@@ -37,10 +37,10 @@ class CommentViewSet(viewsets.ModelViewSet):
         return get_object_or_404(Post, pk=self.kwargs.get('post_id'))
 
     def get_queryset(self):
-        return self.get_post().comments.all() 
+        return self.get_post().comments.all()
 
-    def perform_create(self, serializer): 
-        serializer.save(author=self.request.user, post=self.get_post()) 
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user, post=self.get_post())
 
     def perform_update(self, serializer):
         if serializer.instance.author != self.request.user:
